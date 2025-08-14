@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kamera Terang iPhone</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    input[type=file] {
+      font-size: 18px;
+      padding: 10px;
+      border: 2px solid #333;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Ambil Foto</h2>
+  <input type="file" accept="image/*" capture="environment" id="kamera">
+  <br><br>
+  <img id="preview" style="max-width: 100%; border:1px solid #ccc;"/>
+  
+  <script>
+    document.getElementById('kamera').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          document.getElementById('preview').src = evt.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
